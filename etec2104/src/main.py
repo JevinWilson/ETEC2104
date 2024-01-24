@@ -1,8 +1,8 @@
 import asyncio
 import os, os.path
 import tornado.web
-import Index, Quote, TemplateTest       #new
-import os
+#import Index, Quote, TemplateTest       #new
+import profiles
 
 HTMLDIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__),
@@ -12,13 +12,13 @@ HTMLDIR = os.path.abspath(
 
 def makeApp():
     endpoints=[
-        ("/",Index.Handler),
-        ("/quote",Quote.Handler),
-        ("/fancy",TemplateTest.Handler)     #new
+        # ex: localhost:8000/profile/alice
+        (r"/profile/(.*)",profiles.IndexHandler) 
     ]
+    
     app = tornado.web.Application(endpoints,
-        static_path=HTMLDIR
-    )
+        static_path=HTMLDIR)
+    
     app.listen(8000)
     print("Server running at http://localhost:8000")
     return app
