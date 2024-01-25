@@ -1,23 +1,35 @@
 html {
-
+    background-color: #7d7d7d;
+    background-size:  8px 8px;
 }
 
 body, section {
-
+    color: #111111;
+    border: 2px solid #111111;
+    border-radius: 16px;
+    font-family: monospace;
+    font-size: large;
+    margin: 20px;
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: auto;
+    min-width: 256px;
 }
 
 body {
-
+    background-color: #d3d3d3;
 }
 
 section {
-
+    background-color: f5f5ff;
 }
 
 h1.siteHeader {
-
+    font-family: cursive;
+    text-align: center;
 }
 
 h1 {
-    
+    text-align: center;
 }
