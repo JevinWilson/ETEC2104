@@ -1,35 +1,42 @@
-html {
-    background-color: #7d7d7d;
-    background-size:  8px 8px;
+/* Resetting default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body, section {
-    color: #111111;
-    border: 2px solid #111111;
-    border-radius: 16px;
-    font-family: monospace;
-    font-size: large;
-    margin: 20px;
-    padding-top: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-    max-width: auto;
-    min-width: 256px;
+/* Global styles */
+html {
+    background-color: #7d7d7d;
+    background-size: 8px 8px;
 }
 
 body {
+    font-family: 'monospace', sans-serif;
+    font-size: 1.25rem; /* equivalent to 'large' size */
+    line-height: 1.6;  /* improved readability */
+    color: #111111;
     background-color: #d3d3d3;
+    margin: 20px;
 }
 
 section {
-    background-color: f5f5ff;
+    border: 2px solid #111111;
+    border-radius: 16px;
+    margin: 20px;
+    padding: 8px 16px;
+    background-color: #f5f5ff;
 }
 
-h1.siteHeader {
-    font-family: cursive;
+/* Header styles */
+h1, h1.siteHeader {
+    font-family: 'cursive', sans-serif;
     text-align: center;
 }
 
-h1 {
-    text-align: center;
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    body, section {
+        margin: 10px;
+    }
 }
