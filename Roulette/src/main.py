@@ -19,6 +19,7 @@ def makeApp():
         static_path=HTMLDIR
     )
     app.listen(8000)
+    print("Server started on port 8000")
     return app
 
 if __name__ == "__main__":
