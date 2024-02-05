@@ -16,7 +16,14 @@ function sendMessage() {
 
     sock.send( msg );
 
+    //let box = document.getElementById("chat");
+    //box.value += msg + "\n";
+}
+
+function messageReceived(ev){
     let box = document.getElementById("chat");
+    let msg = ev.data;
+    console.log(msg);
     box.value += msg + "\n";
 }
 
@@ -26,6 +33,9 @@ function main(){
         let b = document.getElementById("send");
         b.disabled=0
     });
+
+    sock.addEventListener("message", messageReceived);
+
 }
 
 main();
