@@ -56,5 +56,6 @@ function roulette() {
     display.textContent = `${winner.number} ${winner.french} ${winner.color} ${winner.oddOrEven} ${winner.manqueOrPasse}`;
 
     // call program on start up
-    window.onload = roulette();
+    
+    // window.onload = roulette(); // moved to html file
 }
