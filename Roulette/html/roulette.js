@@ -24,7 +24,7 @@ let rouletteOutcome = [
     {number: 10, french: "dix", color: "noir", oddOrEven: "pair", manqueOrPasse: "manque"},
     {number: 32, french: "treize", color: "rouge", oddOrEven: "pair", manqueOrPasse: "passe"},
     {number: "00", french: "zero", color: "noir", oddOrEven: "pair", manqueOrPasse: "passe"},
-    {number: 15, french: "quinze", color: "rouge", oddOrEven: "impair", manqueOrPasse: ", manque"},
+    {number: 15, french: "quinze", color: "rouge", oddOrEven: "impair", manqueOrPasse: "manque"},
     {number: 8, french: "huit", color: "noir", oddOrEven: "pair", manqueOrPasse: "manque"},
     {number: 25, french: "vingt-cinq", color: "rouge", oddOrEven: "impair", manqueOrPasse: "passe"},
     {number: 1, french: "un", color: "noir", oddOrEven: "impair", manqueOrPasse: "manque"},
@@ -88,6 +88,12 @@ function roulette() {
 
     // store result in array
     spinHistory.unshift(winner);
+    /*
+    // keep table to 10 rows max
+    if (spinHistory.length > 10) {
+        spinHistory.pop();
+    }
+    */
     // update history table
     updateSpinHistory();
 
