@@ -90,6 +90,8 @@ function roulette() {
     spinHistory.push(winner);
     // update history table
     updateSpinHistory();
+
+    console.log('Spin button clicked');
     
 }
 

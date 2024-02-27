@@ -10,9 +10,17 @@ HTMLDIR = os.path.abspath(
     )
 )
 
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render("index.html")
+
 def makeApp():
     endpoints=[
         # dont forget to add indexs here.
+        # runs at localhost:8000/roulette.html
+        (r"/", MainHandler), 
+        (r"/(roulette\.html)", tornado.web.StaticFileHandler, {'path': HTMLDIR}),
+        (r"/(roulette\.js)", tornado.web.StaticFileHandler, {'path': HTMLDIR}),
     ]
     app = tornado.web.Application(
         endpoints,
