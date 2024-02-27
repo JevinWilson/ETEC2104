@@ -7,15 +7,18 @@
     </head>
     <body>
         <p>99% of gamblers quit before they win big!!!</p>
-        <div id="display"></div>
         <button id="spinButton">Spin!!!</button>
 
+        <table id="spinHistory">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Color</th>
+                    <th>Pairity</th>
+                    <th>Pass/Fail</th>
+                </tr>
+            </thead>
+        </table>
         <script src="/static/roulette.js"></script>
-
-        <script>
-            window.onload = function() {
-                document.getElementById('spinButton').addEventListener('click', roulette);
-            }
-        </script>
     </body>
 </html>

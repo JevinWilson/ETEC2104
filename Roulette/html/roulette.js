@@ -1,5 +1,6 @@
 "use strict";
 
+let spinHistory = [];
 
 // roulette outcome [0, 34, 10, 21, 28, 4, 18, 9, 27, 22, 12, 3, 17, 20, 11, 33, 2, 10, 32, 00, 15, 8, 25, 1, 31, 20, 14, 30, 7, 24, 29, 35, 6, 13, 23, 19, 5, 36]
 let rouletteOutcome = [
@@ -43,19 +44,53 @@ let rouletteOutcome = [
     {number: 36, french: "trente-six", color: ", noir", oddOrEven: ", pair", manqueOrPasse: ", passe"}
 ]
 
+function updateSpinHistory() {
+    let table = document.getElementById('spinHistory');
+    if (!table) {
+        table = document.createElement('table');
+        table.id = 'spinHistory';
+        document.body.appendChild(table);
+    }
+    // clear table for update
+    table.innerHTML = '';
+
+    // table headers
+    let header = table.createTHead();
+    let headerRow = header.insertRow(0);
+    headerRow.insertCell(0).textContent = "Number";
+    headerRow.insertCell(1).textContent = "French";
+    headerRow.insertCell(2).textContent = "Color";
+    headerRow.insertCell(3).textContent = "Odd or Even";
+    headerRow.insertCell(4).textContent = "Manque or Passe";
+
+    // add past spins
+    spinHistory.forEach(spin => {
+        let row = table.insertRow();
+        row.insertCell(0).textContent = spin.number;
+        row.insertCell(1).textContent = spin.french;
+        row.insertCell(2).textContent = spin.color.trim();
+        row.insertCell(3).textContent = spin.oddOrEven.trim();
+        row.insertCell(4).textContent = spin.manqueOrPasse.trim();
+    });
+}
+
 function roulette() {
     // get random index: https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
     let randomIndex = Math.floor(Math.random() * rouletteOutcome.length);
     let winner = rouletteOutcome[randomIndex];
 
     // output result
-    console.log('${winner.number} ${winner.french} ${winner.color} ${winner.oddOrEven} ${winner.manqueOrPasse}');
+    console.log(`${winner.number} ${winner.french} ${winner.color} ${winner.oddOrEven} ${winner.manqueOrPasse}`);
 
     // output to display: https://www.w3schools.com/jsref/met_document_getelementbyid.asp
     let display = document.getElementById('display');
     display.textContent = `${winner.number} ${winner.french} ${winner.color} ${winner.oddOrEven} ${winner.manqueOrPasse}`;
 
-    // call program on start up
+    // store result in array
+    spinHistory.push(winner);
+    // update history table
+    updateSpinHistory();
     
-    // window.onload = roulette(); // moved to html file
 }
+
+document.getElementById('spinButton').addEventListener('click', roulette);
