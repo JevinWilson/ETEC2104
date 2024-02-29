@@ -14,5 +14,17 @@
             <p>Date of Birth: {{dateOfBirth}}</p>
             <p>Email: {{email}}</p>
         </section>
+        <section>
+            <h1>Update Profile</h1>
+            <p><b>Modify the info you wish to change</b></p>
+            <table>
+                <tr><td>Real Name:  <td><input id="rname"></td></tr>
+                <tr><td>Date of Birth:  <td><input id="dob" type="date"></td></tr>
+                <tr><td>Email:  <td><input id="email" type="email"></td></tr>
+                <tr><td>Profile Pic:  <td><input id="ppic" type="file" accept="image/*"></td></tr>
+            </table>
+            <button onclick="submit()">submit</button>
+            <script src="/static/updateprofile.js"></script>
+        </section>
     </body>
 </html>
