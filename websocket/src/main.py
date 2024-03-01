@@ -1,7 +1,7 @@
 import asyncio
 import os, os.path
 import tornado.web
-import websocket
+from websocket import RouletteWebSocketHandler
 
 
 HTMLDIR = os.path.abspath(
@@ -14,6 +14,9 @@ HTMLDIR = os.path.abspath(
 def makeApp():
     endpoints=[
         # dont forget to add indexs here.
+        (r"/", IndexHandler),
+        (r"/ws", RouletteWebSocketHandler), 
+        (r"/static/(.*)", tornado.web.StaticFileHandler, {'path': HTMLDIR})
     ]
     app = tornado.web.Application(
         endpoints,
@@ -25,7 +28,7 @@ def makeApp():
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("<a href='/static/roulette.html'>Welcom</a>")
+        self.write("<a href='/static/roulette.html'>Welcome, the House always wins!!!</a>")
 
 if __name__ == "__main__":
     app = makeApp()

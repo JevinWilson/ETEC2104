@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head><meta charset="utf-8"></head>
-    <title>Roulette</title>
+    <head>
+        <meta charset="utf-8">
+        <title>Roulette</title>
+    </head>
     <body>
-        99% of gamblers quit before they win big!!!
+        <p>99% of gamblers quit before they win big!!!</p>
+        <div id="display">Spin results here</div>
+        <button id="spinButton">Spin!!!</button>
+        <table id="spinHistory"></table>
+        <script src="roulette.js"></script>
     </body>
-    <div id="display"></div>
-
-    <script src="/static/roulette.js"></script>
-    <script>
-        window.onload = function() {
-            Roulette();
-        }
-    </script>
 </html>
