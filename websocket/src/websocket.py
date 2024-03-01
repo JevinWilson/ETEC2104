@@ -12,9 +12,7 @@ class RouletteWebSocketHandler(tornado.websocket.WebSocketHandler):
         print("WebSocket closed")
 
     def on_message(self, message):
-        RouletteWebSocketHandler.broadcast(message)
-
-    @classmethod
-    def broadcast(cls, message):
-        for browser in activeBrowsers:
-            browser.write_message(message)
+        # Broadcast the message to all connected clients
+        for socket in activeBrowsers:
+            if socket != self:
+                socket.write_message(message)

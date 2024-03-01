@@ -28,7 +28,7 @@ def makeApp():
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("<a href='/static/roulette.html'>Welcome, the House always wins!!!</a>")
+        self.write("<a href='/static/roulette.html'>Welcome, the House always win!!!</a>")
 
 if __name__ == "__main__":
     app = makeApp()

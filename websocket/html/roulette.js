@@ -75,47 +75,48 @@ function updateSpinHistory() {
 }
 
 function roulette() {
-    // get random index: https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
     let randomIndex = Math.floor(Math.random() * rouletteOutcome.length);
     let winner = rouletteOutcome[randomIndex];
 
-    // output result
-    console.log(`${winner.number} ${winner.french} ${winner.color} ${winner.oddOrEven} ${winner.manqueOrPasse}`);
+    // Send the result to the server
+    sock.send(JSON.stringify(winner));
 
-    // output to display: https://www.w3schools.com/jsref/met_document_getelementbyid.asp
+    // Update the local display and history
+    updateDisplayAndHistory(winner);
+}
+
+function updateDisplayAndHistory(winner) {
     let display = document.getElementById('display');
     display.textContent = `${winner.number} ${winner.french} ${winner.color} ${winner.oddOrEven} ${winner.manqueOrPasse}`;
 
-    // store results in array
+    // Store results in array
     spinHistory.unshift(winner);
 
-    // keep table to 10 rows
-    if (spinHistory.length > 10) {
+    // Keep table to 10 rows
+    /*if (spinHistory.length > 10) {
         spinHistory.pop();
-    }
+    }*/
     updateSpinHistory();
-    console.log('Spin button clicked');
 }
 
-// establish websocket connection
+// Establish WebSocket connection
 let sock = new WebSocket("ws://" + document.location.host + "/ws");
-// event listener for websocket connection
+
 sock.addEventListener("open", () => {
     console.log("WebSocket connection opened.");
 });
-// event listener for websocket message
+
 sock.addEventListener("message", (ev) => {
-    let display = document.getElementById('display');
-    display.textContent = ev.data;
+    // Parse the JSON string to an object
+    let spinResult = JSON.parse(ev.data);
+
+    // Update the display and history with the received message
+    updateDisplayAndHistory(spinResult);
 });
-// event listener for websocket close
+
 sock.addEventListener("close", () => {
     console.log("WebSocket connection closed.");
 });
-// bind roulette function to spin button
-document.getElementById('spinButton').addEventListener('click', () => {
-    let result = roulette(); // Call the roulette function to get the result
-    sock.send(result); // Send the result to the server
-});
 
+// Bind roulette function to spin button
 document.getElementById('spinButton').addEventListener('click', roulette);
