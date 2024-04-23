@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset=utf8>
         <link rel=stylesheet href="/static/style.css">
-        <title>Profile for {{username}}</title>
+        <title>Profile for {{userName}}</title>
     </head>
     <body>
         <h1 class="siteHeader">Foo Directory</h1>
         <section>
-            <h1>Profile for {{username}}</h1>
-            <img src="/static/image/{{username}}.png">
+            <h1>Profile for '{{userName}}'</h1>
+            <img id="profileImage" src="{{image}}" width="250px">
             <p>Real Name: {{name}}</p>
             <p>Date of Birth: {{dateOfBirth}}</p>
             <p>Email: {{email}}</p>
         </section>
         <section>
             <h1>Update Profile</h1>
-            <p><b>Modify the info you wish to change</b></p>
+            <p><b>Change info below</b></p>
             <table>
                 <tr><td>Real Name:  <td><input id="rname"></td></tr>
                 <tr><td>Date of Birth:  <td><input id="dob" type="date"></td></tr>
                 <tr><td>Email:  <td><input id="email" type="email"></td></tr>
                 <tr><td>Profile Pic:  <td><input id="ppic" type="file" accept="image/*"></td></tr>
             </table>
-            <button onclick="submit()">submit</button>
+
+            <button onclick="submit()">Submit</button>
+
             <script src="/static/updateprofile.js"></script>
         </section>
     </body>

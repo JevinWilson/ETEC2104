@@ -1,46 +1,50 @@
 "use strict";
 
-function submit(){
+function submit() {
     let rname = document.getElementById("rname").value;
     let dob = document.getElementById("dob").value;
     let email = document.getElementById("email").value;
-    let profilePic = localStorage.getItem("profilePic");
+
     let J = {
         realName: rname,
         birthDate: dob,
-        email: email,
-        profilePic: profilePic
+        email: email
     };
-    fetch( "/updateprofile",
-        {   method: "POST",
+
+    fetch("/profile",
+        {
+            method: "POST",
             body: JSON.stringify(J)
         }
-    ).then( (resp) => {
-        //can also use text(), blob(), or arrayBuffer()
-        resp.json().then( (J) => {
-            console.log("Server said:",J);
+    ).then((resp) => {
+        resp.json().then((J) => {
+            console.log("Server said:", J);
+            saveImage();
+            document.location.reload();
         });
-    }).catch( (err) => {
-        console.log("Uh oh",err);
+    }).catch((err) => {
+        console.log("Uh oh", err);
     });
 }
 
 function saveImage() {
-    let pic = document.getElementById("ppic").files[0];
-    if (pic) {
-        let reader = new FileReader();
-        reader.addEventListener("load", () => {
-            let profilePic = btoa(reader.result);
-            localStorage.setItem("profilePic", profilePic);
+    let picture = document.getElementById("ppic").files[0];
+    if(picture) {
+        let R = new FileReader();
+        R.addEventListener("load", () => {
+            let profilePic = btoa(R.result);
+
+            localStorage.setItem("profileImage", profilePic);
         });
-        reader.readAsBinaryString(pic);
+
+        R.readAsDataURL(picture);
     }
 }
 
-window.onload = () => {
-    let profilePicture = localStorage.getItem("profilePic");
-    if (profilePicture) {
-        document.getElementById("profilePic").src = "data:image/octet-stream;base64," + profilePicture;
+window.onload = function() {
+    let profilePicData = localStorage.getItem("profileImage");
+    if (profilePicData) {
+        document.getElementById("profileImage").src = "data:image/octet-stream;base64," + profilePicData;
     }
-    localStorage.removeItem("profilePic");
+    localStorage.removeItem("profileImage");
 }
