@@ -1,7 +1,7 @@
 
 
 import unittest
-from src.AccountManager import AccountManager
+from UnitTest.src.AccountManager import AccountManager
 #import src.AccountManager as AccountManager
 
 class Tester(unittest.TestCase):
